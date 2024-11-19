@@ -15,8 +15,14 @@ const DUMMY_PLACES = [
     creator: 'u1'
   }
 ];
-router.get('/',(req,res,next)=>{
-  message:"welcome to places routes"
+router.get('/user/:uid',(req,res,next)=>{
+  console.log("get req in users");
+  const userId = req.params.uid;
+  const place = DUMMY_PLACES.find(e =>{ return  userId == e.creator}); 
+   res.json({
+    place
+   })
+  
 })
 router.get('/:pid',(req,res,next)=>{
   const placeId = req.params.pid;
