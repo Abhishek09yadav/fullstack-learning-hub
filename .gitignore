@@ -128,3 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+.idea/vcs.xml
+.idea/modules.xml
+.idea/Learning_backend.iml
