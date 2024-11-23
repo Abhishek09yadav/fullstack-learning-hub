@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-
+const HttpError = require('../models/http-error')
 const DUMMY_PLACES = [
   {
     id: 'p1',
@@ -33,9 +33,8 @@ router.get('/:pid',(req,res,next)=>{
   const placeId = req.params.pid;
   const place= DUMMY_PLACES.find(p => {return p.id == placeId;} );
   if(!place){
-  const error = new Error('cound not find place :\ ');
-  error.code= 404;
-  return next(error)
+  throw new HttpError('cound not find place :\ ',404);
+
   }
   res.json({
     place
