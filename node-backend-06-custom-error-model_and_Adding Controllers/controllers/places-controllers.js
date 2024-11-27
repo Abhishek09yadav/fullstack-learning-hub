@@ -58,6 +58,24 @@ DUMMY_PLACES.push(createdPlace)
 res.status(201).json({place: createdPlace});
   }
 
+  const updateplace = (req,res,next) =>{
+   const placeId = req.params.pid;
+   const {
+    title,
+    description,
+    
+  }= req.body;
+  const updatedplace = {...DUMMY_PLACES.find(p =>{return p.id === placeId})} // CREATED  a copy of data using spread operator
+  const placeIndex = DUMMY_PLACES.findIndex(p => p.id === placeId );
+  updatedplace.title= title;
+  updatedplace.description = description;
+  DUMMY_PLACES[placeIndex] = updatedplace;
+res.status(201).json({place: updatedplace});
+  }
+  const deleteplace = (req,res,next) =>{}
+
   exports.getPlaceById = getPlaceById;
   exports.getPlaceByUserId = getPlaceByUserId;
   exports.createPlace = createPlace;
+  exports.updateplace = updateplace;
+  exports.deleteplace = deleteplace;
