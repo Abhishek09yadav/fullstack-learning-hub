@@ -48,11 +48,7 @@ const {
 }= req.body;
 
 const createdPlace ={
-  title: uuid4(),
-  description,
-  location: coordinates,
-  address,
-  creator
+  title: uuid4(), description,  location: coordinates, address, creator
 };
 DUMMY_PLACES.push(createdPlace)
 res.status(201).json({place: createdPlace});
