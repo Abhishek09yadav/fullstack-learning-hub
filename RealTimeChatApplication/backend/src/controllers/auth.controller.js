@@ -42,12 +42,11 @@ export const login = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "user not found" });
     }
-    const isPasswordCorrect = bcrypt.compare(password, user.password);
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
       return res.status(400).json({ message: "invalid credentials" });
     }
 
-    
     // generating token here
     genrateToken(user._id, res);
     res.status(200).json({
