@@ -20,6 +20,7 @@ export const signup = async (req, res) => {
       password: hashedPassword,
     });
     if (newUser) {
+      // generating token here
       genrateToken(newUser._id, res);
       await newUser.save();
       res.status(201).json({
@@ -34,10 +35,42 @@ export const signup = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
-export const login = (req, res) => {
-  
-  res.send("login");
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "user not found" });
+    }
+    const isPasswordCorrect = bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+      return res.status(400).json({ message: "invalid credentials" });
+    }
+
+    
+    // generating token here
+    genrateToken(user._id, res);
+    res.status(200).json({
+      _id: user._id,
+      fullName: user.fullName,
+      email: user.email,
+      profilePic: user.profilePic,
+      message: "login successful",
+    });
+  } catch (error) {
+    console.log("error during login:", error);
+    res.status(500).json({message:'internal server error'});
+  }
+
 };
 export const logout = (req, res) => {
-  res.send("logout");
+  try{
+
+    res.cooke("ChatApp","",{maxAge:0});
+    res.status.json({message:""})
+  }
+  catch(error){
+    console.log("error during logout:", error);
+    res.status(500).json({ message: "internal server error" });
+  }
 };
