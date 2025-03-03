@@ -58,17 +58,14 @@ export const login = async (req, res) => {
     });
   } catch (error) {
     console.log("error during login:", error);
-    res.status(500).json({message:'internal server error'});
+    res.status(500).json({ message: "internal server error" });
   }
-
 };
 export const logout = (req, res) => {
-  try{
-
-    res.cooke("ChatApp","",{maxAge:0});
-    res.status.json({message:""})
-  }
-  catch(error){
+  try {
+    res.cookie("ChatApp", "", { maxAge: 0 });
+    res.status(200).json({ message: "logout successful" });
+  } catch (error) {
     console.log("error during logout:", error);
     res.status(500).json({ message: "internal server error" });
   }

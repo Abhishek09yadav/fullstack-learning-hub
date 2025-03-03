@@ -7,7 +7,7 @@ const app = express();
 dotenv.config();
 
 app.listen(PORT, () => {
-  console.log(`server is running on port ${PORT}`)
+  console.log(`server is running on port number ${PORT}`);
   connectDB();
 });
 app.get("/", (req, res) => res.send(`server is running on port ${PORT}`));
