@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 const ChildComponent = () => {
   console.log('ChildComponent rendered');
@@ -10,4 +10,4 @@ const ChildComponent = () => {
   )
 }
 
-export default ChildComponent
+export default memo(ChildComponent)
