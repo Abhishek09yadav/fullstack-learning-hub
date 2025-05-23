@@ -5,6 +5,18 @@ import ChildComponent from "./ChildComponent";
 export default function Home() {
   const [todos, setTodos] = useState([]);
   const [name, setName] = useState("");
+  const [count, setCount] = useState(0);
+  
+const basicCount = (inputNum) =>{
+  let temp = 0
+  for(let i = 0 ;i< inputNum*100 ;i++){
+    temp = temp + 1;
+  } 
+  return inputNum*4;
+}
+  const HandleCount =useCallback(() =>{
+    setCount(basicCount(count));
+  },[count]);
   const HandleAdd = (e) => {
     e.preventDefault();
     if (!name) return;
@@ -18,7 +30,7 @@ export default function Home() {
   };
   const countTodos = useMemo(() =>{
     return todos.length;
-  },[]);
+  },[todos]);
   const logTodos = useCallback(() => {
     console.log("hello");
   }, []);
@@ -36,7 +48,10 @@ export default function Home() {
   return (
     <>
       <ChildComponent logTodos={logTodos} />
-      <div className="text-center text-2xl">Count: {countTodos}</div>
+      <div className="text-center text-2xl">Count: {count}</div>
+      <input type='number'onchange ={(e) => setCount(e.target.value) } className="p-3 mt-3  border-3 border-gray-400 rounded-full" />
+      <button className="p-3 rounded-full bg-blue-500 hover:bg-blue-600 " onClick={HandleCount}>Count</button>
+      <div className="text-center text-2xl">Todo : {countTodos}</div>
       <div className="container my-auto mx-auto mt-3 justify-center align-items-center ">
         <div className="text-4xl text-center font-medium underline">Todo</div>
         <div className="justify-center items-center gap-2 flex flex-row no-wrap">

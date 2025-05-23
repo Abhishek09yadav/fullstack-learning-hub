@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 
-function ChildComponent({ logTodos }) {
+function ChildComponent({ logTodos,count }) {
   console.log("ChildComponent rendered");
   return (
     <div className="flex flex-row item-center justify-center gap-3 mt-2">
