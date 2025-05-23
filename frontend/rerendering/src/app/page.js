@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import ChildComponent from "./ChildComponent";
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
   const [name, setName] = useState("");
   const HandleAdd = (e) => {
     e.preventDefault();
-    if(!name) return
+    if (!name) return;
     const newTodo = {
       id: Date.now(),
       name: name,
@@ -16,23 +16,23 @@ export default function Home() {
     setTodos([...todos, newTodo]);
     setName("");
   };
-  function ToggleAll() {
-    
-  }
+  const logTodos = useCallback(() => {
+    console.log("hello");
+  },[]);
   const Toggle = (id) => {
     const newTodos = todos.map((todo) => {
       todo.id === id ? (todo.completed = !todo.completed) : todo.completed;
       return todo;
-    });
+    }); 
     setTodos(newTodos);
   };
   const Delete = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
-  console.log(todos);
+  // console.log(todos);
   return (
     <>
-      <ChildComponent />
+      <ChildComponent logTodos={logTodos} />
       <div className="container my-auto mx-auto mt-3 justify-center align-items-center ">
         <div className="text-4xl text-center font-medium underline">Todo</div>
         <div className="justify-center items-center gap-2 flex flex-row no-wrap">
@@ -56,7 +56,7 @@ export default function Home() {
         </div>
         <ul className="flex flex-col mt-3  items-center justify-center ">
           {todos.map((todo) => {
-            console.log("todo", todo);
+            // console.log("todo", todo);
             return (
               <li
                 className={`text-2xl flex flex-row no-wrap gap-2 `}
