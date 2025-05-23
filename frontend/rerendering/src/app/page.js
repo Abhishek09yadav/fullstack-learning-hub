@@ -23,7 +23,7 @@ export default function Home() {
     const newTodos = todos.map((todo) => {
       todo.id === id ? (todo.completed = !todo.completed) : todo.completed;
       return todo;
-    }); 
+    });
     setTodos(newTodos);
   };
   const Delete = (id) => {
