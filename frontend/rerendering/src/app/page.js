@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useMemo, useState } from "react";
-import ChildComponent from "./ChildComponent";
+import ChildComponent from "../Components/ChildComponent";
 
 export default function Home() {
   const [todos, setTodos] = useState([]);
