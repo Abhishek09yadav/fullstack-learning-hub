@@ -15,3 +15,12 @@ export const searchQuery = (req, res) => {
     page: page || 1,
   });
 };
+export const getHouseById =(req,res)=>{
+  const {houseNo, Building, landmark } = req.query;
+  console.log(houseNo,Building,landmark)
+  res.status(200).json({
+    houseNo: houseNo || 0,
+    Building : Building || 'not provided',
+    landmark : landmark || 'not provided',
+  });
+}
