@@ -6,6 +6,6 @@ const router = express.Router()
 
 router.get('/user/:userId',getUserById)
 router.get('/book/:bookId/:chapterId',getbookById)
-router.get('/search/:query?',searchQuery)
+router.get("/search", searchQuery);
 
 export default router
