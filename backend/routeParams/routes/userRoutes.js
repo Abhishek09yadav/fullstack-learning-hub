@@ -1,5 +1,5 @@
 import express from 'express'
-import { getbookById, getHouseById, getUserById, searchQuery } from '../controllers/userController.js'
+import {  addUser, getbookById,  getUserById, searchQuery, searchUser } from '../controllers/userController.js'
 
 
 const router = express.Router()
@@ -7,6 +7,8 @@ const router = express.Router()
 router.get('/user/:userId',getUserById)
 router.get('/book/:bookId/:chapterId',getbookById)
 router.get("/search", searchQuery);
-router.get("/house", getHouseById);
+router.get("/searchuser", searchUser);
+router.post("/addUser",addUser)
+
 
 export default router
