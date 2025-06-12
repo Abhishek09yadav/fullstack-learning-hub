@@ -40,11 +40,25 @@ export const searchUser = (req, res) => {
 
 export const addUser = (req, res) => {
   const { user } = req.body;
-  const newUser = { id: mockUsers[mockUsers.length - 1].id + 1,
-    ...user
-  };
-  mockUsers.push(newUser)
-  res.status(200).json({message:"new user created",
-    newUser
-  })
+  const newUser = { id: mockUsers[mockUsers.length - 1].id + 1, ...user };
+  mockUsers.push(newUser);
+  res.status(200).json({ message: "new user created", newUser });
+};
+
+export const UpdateUser = (req, res) => {
+  var { userId } = req.query;
+  userId = parseInt(userId);
+  const { data } = req.body;
+  console.log("userId and data", userId, data);
+  const userIndex = mockUsers.findIndex((value) => value.id == userId);
+  console.log("userIndex", userIndex);
+  if (userIndex === -1) {
+    return res.status(200).json({ message: "no user found" });
+  } else {
+    mockUsers[userIndex] = {
+      id: userId,
+      ...data,
+    };
+    res.status(201).json({ mockUsers });
+  }
 };
