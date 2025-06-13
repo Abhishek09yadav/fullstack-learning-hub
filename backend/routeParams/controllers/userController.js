@@ -46,25 +46,27 @@ export const addUser = (req, res) => {
 };
 
 export const UpdateUser = (req, res) => {
-  var { userId } = req.query;
-  userId = parseInt(userId);
+  var { userIndex } = req;
   const { data } = req.body;
-  console.log("userId and data", userId, data);
-  const userIndex = mockUsers.findIndex((value) => value.id == userId);
-  console.log("userIndex", userIndex);
-  if (userIndex === -1) {
-    return res.status(200).json({ message: "no user found" });
-  } else {
-    mockUsers[userIndex] = {
-      id: userId,
-      ...data,
-    };
-    res.status(201).json({ mockUsers });
-  }
+ 
+  mockUsers[userIndex] = {
+    id: userId,
+    ...data,
+  };
+  res.status(201).json({ mockUsers });
 };
+
 export const patchUser = (req, res) => {
+  const { body, userIndex } = req;
+
+  mockUsers[userIndex] = {
+    ...mockUsers[userIndex],
+    ...body,
+  };
+  res.status(200).json({ mockUsers });
+};
+export const deleteUser = (req, res) => {
   const {
-    body,
     query: { userId },
   } = req;
   const parseId = parseInt(userId);
@@ -72,9 +74,6 @@ export const patchUser = (req, res) => {
   if (findIndex === -1) {
     return res.status(404).json({ message: "No user found" });
   }
-  mockUsers[findIndex] = {
-    ...mockUsers[findIndex],
-    ...body,
-  };
+  mockUsers.splice(findIndex, 1);
   res.status(200).json({ mockUsers });
 };
