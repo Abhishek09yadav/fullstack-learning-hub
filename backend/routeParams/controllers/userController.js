@@ -62,3 +62,19 @@ export const UpdateUser = (req, res) => {
     res.status(201).json({ mockUsers });
   }
 };
+export const patchUser = (req, res) => {
+  const {
+    body,
+    query: { userId },
+  } = req;
+  const parseId = parseInt(userId);
+  const findIndex = mockUsers.findIndex((value) => value.id === parseId);
+  if (findIndex === -1) {
+    return res.status(404).json({ message: "No user found" });
+  }
+  mockUsers[findIndex] = {
+    ...mockUsers[findIndex],
+    ...body,
+  };
+  res.status(200).json({ mockUsers });
+};
