@@ -17,9 +17,10 @@ const io =new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("Connected");
-  socket.on("disconnect", () => {
-    console.log("client disconnected");
+  console.log("Client connected:", socket.id);
+
+  socket.on("disconnect", (reason) => {
+    console.log("Client disconnected:", socket.id, "Reason:", reason);
   });
 });
 
@@ -31,4 +32,4 @@ app.post("/send", (req, res) => {
   res.status(200).json({ message: "sent" });
 
 });
-server.listen(4000,()=> console.log('server is running'))
+server.listen(4000,()=> console.log('server is running on port 4000'))
