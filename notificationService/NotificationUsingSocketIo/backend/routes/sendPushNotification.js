@@ -1,10 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
 import webpush from "web-push";
-const router = express.Router();
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
+import Subscription from "../models/Subscription.js";
 dotenv.config();
-
+const router = express.Router();
 
 // web push
 console.log("Public Key:", process.env.VAPID_PUBLIC_KEY);
@@ -15,21 +15,36 @@ webpush.setVapidDetails(
   process.env.VAPID_PRIVATE_KEY
 );
 
-let subscriptions = [];
-
-router.post("/subscribe", (req, res) => {
+router.post("/subscribe", async (req, res) => {
   const subscription = req.body;
-  subscriptions.push(subscription);
-  res.status(200).json({ message: "subscribed successfully",subscription });
+  try {
+    const sub = subscription.findOne({
+      endpoint: subscription.endpoint,
+    });
+    if (!endpoint) {
+      await Subscription.save(sub);
+    } else {
+      console.log("Subscription already exists.");
+    }
+  } catch (err) {}
+  res.status(200).json({ message: "subscribed successfully", subscription });
 });
 
 router.post("/sendNotification", async (req, res) => {
-  const message = "hello";
+  const payload = JSON.stringify({
+    title: "testing",
+    body: "hellooooooo",
+  });
   try {
-    subscriptions.forEach((curr, index) => {
-      webpush.sendNotification(curr, message);
-    });
-    res.status(200).json({ message: "notification sent",subscriptions });
+    const subscriptions = await Subscription.find();
+    const results = await Promise.allSettled(
+      subscriptions.map((value, index) => {
+        webpush.sendNotification(value, payload);
+      })
+    );
+    res
+      .status(200)
+      .json({ message: "notification sent", total: subscriptions.length });
   } catch (error) {
     console.log("error in sending not.", error);
     res.status(500).send({ error });

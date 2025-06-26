@@ -4,15 +4,22 @@ import http from "http";
 import { Server } from "socket.io";
 import cors from "cors";
 import sendPushNotification from "./routes/sendPushNotification.js";
-import dotenv from 'dotenv'
-
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+const mongoURI = process.env.MONGO_URL;
 dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/sendnotification", sendPushNotification);
 
-app.get('/',(res)=> res.send("welcome"))
+app.get("/", (res) => res.send("welcome"));
+
+mongoose
+  .connect(mongoURI)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
 // const server = http.createServer(app);
 // const io = new Server(server, {
 //   cors: {
