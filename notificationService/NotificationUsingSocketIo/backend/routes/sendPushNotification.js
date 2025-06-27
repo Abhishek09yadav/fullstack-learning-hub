@@ -17,18 +17,28 @@ webpush.setVapidDetails(
 
 router.post("/subscribe", async (req, res) => {
   const subscription = req.body;
+  console.log("Received subscription:", subscription);
+
   try {
-    const sub = subscription.findOne({
+    const sub = await Subscription.findOne({
       endpoint: subscription.endpoint,
     });
-    if (!endpoint) {
-      await Subscription.save(sub);
+
+    if (!sub) {
+      console.log("New subscriber");
+      const newSub = new Subscription(subscription);
+      await newSub.save();
     } else {
       console.log("Subscription already exists.");
     }
-  } catch (err) {}
-  res.status(200).json({ message: "subscribed successfully", subscription });
+
+    res.status(200).json({ message: "Subscribed successfully", subscription });
+  } catch (err) {
+    console.error("Error in subscription:", err);
+    res.status(500).json({ error: "Failed to subscribe" });
+  }
 });
+
 
 router.post("/sendNotification", async (req, res) => {
   const payload = JSON.stringify({
@@ -39,7 +49,7 @@ router.post("/sendNotification", async (req, res) => {
     const subscriptions = await Subscription.find();
     const results = await Promise.allSettled(
       subscriptions.map((value, index) => {
-        webpush.sendNotification(value, payload);
+        return webpush.sendNotification(value, payload);
       })
     );
     res
