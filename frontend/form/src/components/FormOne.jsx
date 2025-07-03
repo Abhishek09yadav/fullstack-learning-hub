@@ -45,6 +45,7 @@ const FormOne = () => {
     },
   });
   const handleChange = (e) => {};
+  const handleSubmit = (e) => {};
   return (
     <div>
       <form className="flex flex-col gap-6 p-6 bg-white">
@@ -54,27 +55,30 @@ const FormOne = () => {
           <div className="">
             <label className="font-medium text-xl ">username</label>
             <input
+              onChange={handleChange}
               type="text"
               placeholder="username"
-              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-green-800 border-green-500 shadow-md"
+              className="w-full p-1 md:p-2 border-2 rounded-2xl  focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="username"
             />
           </div>
           <div className="">
             <label className="font-medium text-xl ">password</label>
             <input
+              onChange={handleChange}
               type="password"
               placeholder="password"
-              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-green-800 border-green-500 shadow-md"
+              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="password"
             />
           </div>
           <div className="">
             <label className="font-medium text-xl ">Confirm Password</label>
             <input
+              onChange={handleChange}
               type="password"
               placeholder="password"
-              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-green-800 border-green-500 shadow-md"
+              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="password"
             />
           </div>
@@ -84,27 +88,30 @@ const FormOne = () => {
           <div className="">
             <label className="font-medium text-xl ">firstname</label>
             <input
+              onChange={handleChange}
               type="text"
               placeholder="firstname"
-              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-green-800 border-green-500 shadow-md"
+              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="firstname"
             />
           </div>
           <div className="">
             <label className="font-medium text-xl ">Middlename</label>
             <input
+              onChange={handleChange}
               type="middlename"
               placeholder="middlename"
-              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-green-800 border-green-500 shadow-md"
+              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="middlename"
             />
           </div>
           <div className="">
             <label className="font-medium text-xl ">Lastname</label>
             <input
+              onChange={handleChange}
               type="lastname"
               placeholder="lastname"
-              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-green-800 border-green-500 shadow-md"
+              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="lastname"
             />
           </div>
@@ -114,18 +121,20 @@ const FormOne = () => {
           <div className="">
             <label className="font-medium text-xl ">profession</label>
             <input
+              onChange={handleChange}
               type="text"
               placeholder="profession"
-              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-green-800 border-green-500 shadow-md"
+              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="profession"
             />
           </div>
           <div className="">
             <label className="font-medium text-xl ">bloodGroup</label>
             <input
+              onChange={handleChange}
               type="bloodGroup"
               placeholder="bloodGroup"
-              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-green-800 border-green-500 shadow-md"
+              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="bloodGroup"
             />
           </div>
@@ -134,39 +143,78 @@ const FormOne = () => {
           <div className="">
             <label className="font-medium text-xl ">Primary Email</label>
             <input
+              onChange={handleChange}
               type="text"
               placeholder="primary"
-              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-green-800 border-green-500 shadow-md"
+              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="primary"
             />
           </div>
           <div className="">
             <label className="font-medium text-xl ">Primary Phone</label>
             <input
+              onChange={handleChange}
               type="middlename"
               placeholder="middlename"
-              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-green-800 border-green-500 shadow-md"
+              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="primary"
             />
           </div>
           <div className="">
             <label className="font-medium text-xl ">Secondary Email</label>
             <input
+              onChange={handleChange}
               type="alternate"
               placeholder="Alternate Email"
-              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-green-800 border-green-500 shadow-md"
+              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="alternate"
             />
           </div>
           <div className="">
             <label className="font-medium text-xl ">Secondary Phone</label>
             <input
+              onChange={handleChange}
               type="alternate"
               placeholder="Alternate Phone"
-              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-green-800 border-green-500 shadow-md"
+              className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="alternate"
             />
           </div>
+        </div>
+        <div className="  ">
+          <div className="">
+            <label className="font-medium text-xl text-center">
+              Marital Status
+            </label>
+            <div className="flex flex-row flex-nowrap gap-2">
+              <label>Married</label>
+              <input
+                onChange={handleChange}
+                type="radio"
+                className=""
+                name="married"
+                checked={formData.maritalInfo === "married"}
+              />
+              <label>UNMarried</label>
+              <input
+                onChange={handleChange}
+                type="radio"
+                className=""
+                name="unmarried"
+                checked={formData.maritalInfo === "unmarried"}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center items-center">
+          {" "}
+          <button
+            type="submit"
+            className="p-3 rounded-md bg-green-500 cursor-pointer text-white hover:bg-none focus:ring-2 focus:ring-green-500  hover:scale-105 w-1/2  "
+            onClick={handleSubmit}
+          >
+            Submit Form
+          </button>
         </div>
       </form>
     </div>
