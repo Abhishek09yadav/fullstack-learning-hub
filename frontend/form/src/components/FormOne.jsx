@@ -44,8 +44,15 @@ const FormOne = () => {
       },
     },
   });
-  const handleChange = (e) => {};
-  const handleSubmit = (e) => {};
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitted successfully", formData);
+  };
   return (
     <div>
       <form className="flex flex-col gap-6 p-6 bg-white">
@@ -92,17 +99,17 @@ const FormOne = () => {
               type="text"
               placeholder="firstname"
               className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
-              name="firstname"
+              name="name.firstname"
             />
           </div>
           <div className="">
             <label className="font-medium text-xl ">Middlename</label>
             <input
               onChange={handleChange}
-              type="middlename"
+              type="text"
               placeholder="middlename"
               className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
-              name="middlename"
+              name="name.middlename"
             />
           </div>
           <div className="">
@@ -112,7 +119,7 @@ const FormOne = () => {
               type="lastname"
               placeholder="lastname"
               className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
-              name="lastname"
+              name="name.lastname"
             />
           </div>
         </div>
@@ -132,7 +139,7 @@ const FormOne = () => {
             <label className="font-medium text-xl ">bloodGroup</label>
             <input
               onChange={handleChange}
-              type="bloodGroup"
+              type="text"
               placeholder="bloodGroup"
               className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               name="bloodGroup"
@@ -147,7 +154,7 @@ const FormOne = () => {
               type="text"
               placeholder="primary"
               className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
-              name="primary"
+              name="email.primary"
             />
           </div>
           <div className="">
@@ -157,7 +164,7 @@ const FormOne = () => {
               type="middlename"
               placeholder="middlename"
               className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
-              name="primary"
+              name="phone.primary"
             />
           </div>
           <div className="">
@@ -167,7 +174,7 @@ const FormOne = () => {
               type="alternate"
               placeholder="Alternate Email"
               className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
-              name="alternate"
+              name="email.alternate"
             />
           </div>
           <div className="">
@@ -177,7 +184,7 @@ const FormOne = () => {
               type="alternate"
               placeholder="Alternate Phone"
               className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
-              name="alternate"
+              name="phone.alternate"
             />
           </div>
         </div>
@@ -191,17 +198,19 @@ const FormOne = () => {
               <input
                 onChange={handleChange}
                 type="radio"
+                value="married"
                 className=""
-                name="married"
-                checked={formData.maritalInfo === "married"}
+                name="maritalInfo.status"
+                checked={formData.maritalInfo.status === "married"}
               />
               <label>UNMarried</label>
               <input
                 onChange={handleChange}
+                value="unmarried"
                 type="radio"
                 className=""
-                name="unmarried"
-                checked={formData.maritalInfo === "unmarried"}
+                name="maritalInfo.status"
+                checked={formData.maritalInfo.status === "unmarried"}
               />
             </div>
           </div>
