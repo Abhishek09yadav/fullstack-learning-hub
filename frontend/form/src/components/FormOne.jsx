@@ -2,6 +2,17 @@
 import React, { useState } from "react";
 
 const FormOne = () => {
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordStatus, setPassowordStatus] = useState("");
+
+  function checkPassword(e) {
+    if (e.target.value === formData.password) {
+      setPassowordStatus("password Matched");
+    } else {
+      setPassowordStatus("Password do not match");
+    }
+  }
+
   const initial = {
     username: "",
     password: "",
@@ -62,11 +73,14 @@ const FormOne = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitted successfully", formData);
+    if (formData.password != confirmPassword) {
+      return;
+    }
+    console.log("FormData", formData);
   };
   return (
     <div className="flex justify-center items-center">
-      <div className=" max-w-3xl  broder-2 shadow-lg">
+      <div className=" max-w-3xl  broder-2 shadow-green-300 shadow-lg">
         <form className="flex flex-col gap-6 p-6 bg-white">
           <h3 className="text-center text-4xl font-semibold underline">Form</h3>
           {/* user  */}
@@ -75,6 +89,7 @@ const FormOne = () => {
               <label className="font-medium text-xl ">username</label>
               <input
                 onChange={handleChange}
+                value={formData.username}
                 type="text"
                 placeholder="username"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl  focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
@@ -85,6 +100,7 @@ const FormOne = () => {
               <label className="font-medium text-xl ">password</label>
               <input
                 onChange={handleChange}
+                value={formData.password}
                 type="password"
                 placeholder="password"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
@@ -94,12 +110,14 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">Confirm Password</label>
               <input
-                onChange={handleChange}
+                onChange={(e) => checkPassword(e)}
                 type="password"
                 placeholder="password"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
-                name="password"
               />
+              {passwordStatus && (
+                <div className=" font-medium text-center">{passwordStatus}</div>
+              )}
             </div>
           </div>
           {/* name */}
@@ -108,6 +126,7 @@ const FormOne = () => {
               <label className="font-medium text-xl ">firstname</label>
               <input
                 onChange={handleChange}
+                value={formData.firstname}
                 type="text"
                 placeholder="firstname"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
@@ -119,6 +138,7 @@ const FormOne = () => {
               <input
                 onChange={handleChange}
                 type="text"
+                value={formData.middlename}
                 placeholder="middlename"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
                 name="name.middlename"
@@ -129,6 +149,7 @@ const FormOne = () => {
               <input
                 onChange={handleChange}
                 type="lastname"
+                value={formData.lastname}
                 placeholder="lastname"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
                 name="name.lastname"
@@ -142,6 +163,7 @@ const FormOne = () => {
               <input
                 onChange={handleChange}
                 type="text"
+                value={formData.profession}
                 placeholder="profession"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
                 name="profession"
@@ -152,6 +174,7 @@ const FormOne = () => {
               <input
                 onChange={handleChange}
                 type="text"
+                value={formData.bloodGroup}
                 placeholder="bloodGroup"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
                 name="bloodGroup"
@@ -163,6 +186,7 @@ const FormOne = () => {
               <label className="font-medium text-xl ">Primary Email</label>
               <input
                 onChange={handleChange}
+                value={formData.email.primary}
                 type="text"
                 placeholder="primary"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
@@ -172,8 +196,9 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">Primary Phone</label>
               <input
+                value={formData.phone.primary}
                 onChange={handleChange}
-                type="middlename"
+                type="Number"
                 placeholder="middlename"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
                 name="phone.primary"
@@ -183,8 +208,10 @@ const FormOne = () => {
               <label className="font-medium text-xl ">Secondary Email</label>
               <input
                 onChange={handleChange}
-                type="alternate"
+                value={formData.email.alternate}
+                type="Email"
                 placeholder="Alternate Email"
+                required
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
                 name="email.alternate"
               />
@@ -193,14 +220,15 @@ const FormOne = () => {
               <label className="font-medium text-xl ">Secondary Phone</label>
               <input
                 onChange={handleChange}
-                type="alternate"
+                value={formData.phone.alternate}
+                type="Number"
                 placeholder="Alternate Phone"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
                 name="phone.alternate"
               />
             </div>
           </div>
-          {/* marriage status */}
+          {/* marriage passwordStatus */}
           <div className="grid grid-cols-1 md:grid-cols-2 bg-gray-100 p-3 rounded-md">
             <div className="">
               <label className="flex flex-row gap-4 mt-2">Martial Status</label>
@@ -209,8 +237,8 @@ const FormOne = () => {
                   onChange={handleChange}
                   type="radio"
                   value="married"
-                  name="maritalInfo.status"
-                  checked={formData.maritalInfo.status === "married"}
+                  name="maritalInfo.passwordStatus"
+                  checked={formData.maritalInfo.passwordStatus === "married"}
                 />
                 Married
               </label>
@@ -219,8 +247,8 @@ const FormOne = () => {
                   onChange={handleChange}
                   type="radio"
                   value="unmarried"
-                  name="maritalInfo.status"
-                  checked={formData.maritalInfo.status === "unmarried"}
+                  name="maritalInfo.passwordStatus"
+                  checked={formData.maritalInfo.passwordStatus === "unmarried"}
                 />
                 Unmarried
               </label>
@@ -235,7 +263,7 @@ const FormOne = () => {
               />
             </div>
           </div>
-          {formData.maritalInfo.status === "married" && (
+          {formData.maritalInfo.passwordStatus === "married" && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-100 p-3 rounded-md">
               <div>
                 <label className="font-medium text-xl">Spouse Name</label>
@@ -258,6 +286,80 @@ const FormOne = () => {
               </div>
             </div>
           )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="flex flex-col">
+              <label className="font-bold text-2xl ">Residential address</label>
+
+              <label className=" ">address</label>
+              <input
+                type="text"
+                name="address.residential.addressLine"
+                onChange={handleChange}
+                value={formData.address.residential.addressLine}
+                className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
+              />
+              <label className=" ">state</label>
+              <input
+                type="text"
+                name="address.residential.state"
+                onChange={handleChange}
+                value={formData.address.residential.state}
+                className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
+              />
+              <label className=" ">city</label>
+              <input
+                type="text"
+                name="address.residential.city"
+                onChange={handleChange}
+                value={formData.address.residential.city}
+                className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
+              />
+              <label className=" ">phone</label>
+              <input
+                type="Number"
+                name="address.residential.phone"
+                onChange={handleChange}
+                value={formData.address.residential.phone}
+                className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="font-bold text-2xl ">Office address</label>
+
+              <label className=" ">address</label>
+              <input
+                type="text"
+                name="office.residential.addressLine"
+                onChange={handleChange}
+                value={formData.address.residential.addressLine}
+                className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
+              />
+              <label className=" ">state</label>
+              <input
+                type="text"
+                name="office.residential.state"
+                onChange={handleChange}
+                value={formData.address.residential.state}
+                className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
+              />
+              <label className=" ">city</label>
+              <input
+                type="text"
+                name="office.residential.city"
+                onChange={handleChange}
+                value={formData.address.residential.city}
+                className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
+              />
+              <label className=" ">phone</label>
+              <input
+                type="Number"
+                name="office.residential.phone"
+                onChange={handleChange}
+                value={formData.address.residential.phone}
+                className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
+              />
+            </div>
+          </div>
           <div className="flex justify-center items-center">
             {" "}
             <button
