@@ -3,15 +3,7 @@ import React, { useState } from "react";
 
 const FormOne = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordStatus, setPassowordStatus] = useState("");
-
-  function checkPassword(e) {
-    if (e.target.value === formData.password) {
-      setPassowordStatus("password Matched");
-    } else {
-      setPassowordStatus("Password do not match");
-    }
-  }
+  const [passwordStatus, setPasswordStatus] = useState("");
 
   const initial = {
     username: "",
@@ -78,6 +70,16 @@ const FormOne = () => {
     }
     console.log("FormData", formData);
   };
+
+  function checkPassword(e) {
+    setConfirmPassword(e.target.value);
+    if (e.target.value === formData.password) {
+      setPasswordStatus("password Matched");
+    } else {
+      setPasswordStatus("Password do not match");
+    }
+  }
+
   return (
     <div className="flex justify-center items-center">
       <div className=" max-w-3xl  broder-2 shadow-green-300 shadow-lg">
@@ -112,7 +114,9 @@ const FormOne = () => {
               <input
                 onChange={(e) => checkPassword(e)}
                 type="password"
-                placeholder="password"
+                name="confirmPassword"
+                value={confirmPassword}
+                placeholder="confirm password"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
               />
               {passwordStatus && (
@@ -126,7 +130,7 @@ const FormOne = () => {
               <label className="font-medium text-xl ">firstname</label>
               <input
                 onChange={handleChange}
-                value={formData.firstname}
+                value={formData.name.firstname}
                 type="text"
                 placeholder="firstname"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
@@ -138,7 +142,7 @@ const FormOne = () => {
               <input
                 onChange={handleChange}
                 type="text"
-                value={formData.middlename}
+                value={formData.name.middlename}
                 placeholder="middlename"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
                 name="name.middlename"
@@ -148,8 +152,8 @@ const FormOne = () => {
               <label className="font-medium text-xl ">Lastname</label>
               <input
                 onChange={handleChange}
-                type="lastname"
-                value={formData.lastname}
+                type="text"
+                value={formData.name.lastname}
                 placeholder="lastname"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
                 name="name.lastname"
@@ -187,8 +191,8 @@ const FormOne = () => {
               <input
                 onChange={handleChange}
                 value={formData.email.primary}
-                type="text"
-                placeholder="primary"
+                type="email"
+                placeholder="primary Email"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
                 name="email.primary"
               />
@@ -209,7 +213,7 @@ const FormOne = () => {
               <input
                 onChange={handleChange}
                 value={formData.email.alternate}
-                type="Email"
+                type="email"
                 placeholder="Alternate Email"
                 required
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
@@ -221,7 +225,7 @@ const FormOne = () => {
               <input
                 onChange={handleChange}
                 value={formData.phone.alternate}
-                type="Number"
+                type="number"
                 placeholder="Alternate Phone"
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
                 name="phone.alternate"
@@ -229,16 +233,39 @@ const FormOne = () => {
             </div>
           </div>
           {/* marriage passwordStatus */}
-          <div className="grid grid-cols-1 md:grid-cols-2 bg-gray-100 p-3 rounded-md">
+          <div className="grid grid-cols-1 md:grid-cols-3 bg-gray-100 p-3 rounded-md">
             <div className="">
               <label className="flex flex-row gap-4 mt-2">Martial Status</label>
               <label className="flex items-center gap-1">
                 <input
+                  type="radio"
+                  name="gender"
+                  onChange={handleChange}
+                  checked={formData.gender === "male"}
+                  value="male"
+                />
+                Male
+              </label>
+              <label className="flex items-center gap-1">
+                <input
                   onChange={handleChange}
                   type="radio"
+                  value="female"
+                  name="gender"
+                  checked={formData.gender === "female"}
+                />
+                female
+              </label>
+            </div>
+            <div className="">
+              <label className="flex flex-row gap-4 mt-2">Martial Status</label>
+              <label className="flex items-center gap-1">
+                <input
+                  type="radio"
+                  name="maritalInfo.status"
+                  onChange={handleChange}
+                  checked={formData.maritalInfo.status === "married"}
                   value="married"
-                  name="maritalInfo.passwordStatus"
-                  checked={formData.maritalInfo.passwordStatus === "married"}
                 />
                 Married
               </label>
@@ -247,8 +274,8 @@ const FormOne = () => {
                   onChange={handleChange}
                   type="radio"
                   value="unmarried"
-                  name="maritalInfo.passwordStatus"
-                  checked={formData.maritalInfo.passwordStatus === "unmarried"}
+                  name="maritalInfo.status"
+                  checked={formData.maritalInfo.status === "unmarried"}
                 />
                 Unmarried
               </label>
@@ -263,7 +290,7 @@ const FormOne = () => {
               />
             </div>
           </div>
-          {formData.maritalInfo.passwordStatus === "married" && (
+          {formData.maritalInfo.status === "married" && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-100 p-3 rounded-md">
               <div>
                 <label className="font-medium text-xl">Spouse Name</label>
@@ -314,6 +341,14 @@ const FormOne = () => {
                 value={formData.address.residential.city}
                 className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
               />
+              <label className=" ">pincode</label>
+              <input
+                type="Number"
+                name="address.residential.pincode"
+                onChange={handleChange}
+                value={formData.address.residential.pincode}
+                className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
+              />
               <label className=" ">phone</label>
               <input
                 type="Number"
@@ -329,33 +364,41 @@ const FormOne = () => {
               <label className=" ">address</label>
               <input
                 type="text"
-                name="office.residential.addressLine"
+                name="address.office.addressLine"
                 onChange={handleChange}
-                value={formData.address.residential.addressLine}
+                value={formData.address.office.addressLine}
                 className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
               />
               <label className=" ">state</label>
               <input
                 type="text"
-                name="office.residential.state"
+                name="address.office.state"
                 onChange={handleChange}
-                value={formData.address.residential.state}
+                value={formData.address.office.state}
                 className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
               />
               <label className=" ">city</label>
               <input
                 type="text"
-                name="office.residential.city"
+                name="address.office.city"
                 onChange={handleChange}
-                value={formData.address.residential.city}
+                value={formData.address.office.city}
+                className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
+              />
+              <label className=" ">pincode</label>
+              <input
+                type="Number"
+                name="address.office.pincode"
+                onChange={handleChange}
+                value={formData.address.office.pincode}
                 className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
               />
               <label className=" ">phone</label>
               <input
                 type="Number"
-                name="office.residential.phone"
+                name="address.office.phone"
                 onChange={handleChange}
-                value={formData.address.residential.phone}
+                value={formData.address.office.phone}
                 className=" border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 border-green-500 shadow-md"
               />
             </div>
