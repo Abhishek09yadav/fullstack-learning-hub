@@ -83,13 +83,14 @@ const FormOne = () => {
   return (
     <div className="flex justify-center items-center">
       <div className=" max-w-3xl  broder-2 shadow-green-300 shadow-lg">
-        <form className="flex flex-col gap-6 p-6 bg-white">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6 p-6 bg-white">
           <h3 className="text-center text-4xl font-semibold underline">Form</h3>
           {/* user  */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 ">
             <div className="">
               <label className="font-medium text-xl ">username</label>
               <input
+                required
                 onChange={handleChange}
                 value={formData.username}
                 type="text"
@@ -101,6 +102,7 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">password</label>
               <input
+                required
                 onChange={handleChange}
                 value={formData.password}
                 type="password"
@@ -112,6 +114,7 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">Confirm Password</label>
               <input
+                required
                 onChange={(e) => checkPassword(e)}
                 type="password"
                 name="confirmPassword"
@@ -129,6 +132,7 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">firstname</label>
               <input
+                required
                 onChange={handleChange}
                 value={formData.name.firstname}
                 type="text"
@@ -140,6 +144,7 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">Middlename</label>
               <input
+                required
                 onChange={handleChange}
                 type="text"
                 value={formData.name.middlename}
@@ -151,6 +156,7 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">Lastname</label>
               <input
+                required
                 onChange={handleChange}
                 type="text"
                 value={formData.name.lastname}
@@ -165,6 +171,7 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">profession</label>
               <input
+                required
                 onChange={handleChange}
                 type="text"
                 value={formData.profession}
@@ -176,6 +183,7 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">bloodGroup</label>
               <input
+                required
                 onChange={handleChange}
                 type="text"
                 value={formData.bloodGroup}
@@ -189,6 +197,7 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">Primary Email</label>
               <input
+                required
                 onChange={handleChange}
                 value={formData.email.primary}
                 type="email"
@@ -200,6 +209,7 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">Primary Phone</label>
               <input
+                required
                 value={formData.phone.primary}
                 onChange={handleChange}
                 type="Number"
@@ -211,11 +221,12 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">Secondary Email</label>
               <input
+                required
                 onChange={handleChange}
                 value={formData.email.alternate}
                 type="email"
                 placeholder="Alternate Email"
-                required
+              
                 className="w-full p-1 md:p-2 border-2 rounded-2xl focus:outline-none focus:ring-2 focus:ring-green-500  border-green-500 shadow-md"
                 name="email.alternate"
               />
@@ -223,6 +234,7 @@ const FormOne = () => {
             <div className="">
               <label className="font-medium text-xl ">Secondary Phone</label>
               <input
+                required
                 onChange={handleChange}
                 value={formData.phone.alternate}
                 type="number"
@@ -238,6 +250,7 @@ const FormOne = () => {
               <label className="flex flex-row gap-4 mt-2">Martial Status</label>
               <label className="flex items-center gap-1">
                 <input
+                  required
                   type="radio"
                   name="gender"
                   onChange={handleChange}
@@ -248,6 +261,7 @@ const FormOne = () => {
               </label>
               <label className="flex items-center gap-1">
                 <input
+                  required
                   onChange={handleChange}
                   type="radio"
                   value="female"
@@ -261,6 +275,7 @@ const FormOne = () => {
               <label className="flex flex-row gap-4 mt-2">Martial Status</label>
               <label className="flex items-center gap-1">
                 <input
+                  required
                   type="radio"
                   name="maritalInfo.status"
                   onChange={handleChange}
@@ -271,6 +286,7 @@ const FormOne = () => {
               </label>
               <label className="flex items-center gap-1">
                 <input
+                  required
                   onChange={handleChange}
                   type="radio"
                   value="unmarried"
@@ -283,6 +299,7 @@ const FormOne = () => {
             <div>
               <label className="font-medium text-xl"> Date of birth</label>
               <input
+                required
                 onChange={handleChange}
                 type="date"
                 name="DOB"
@@ -295,6 +312,7 @@ const FormOne = () => {
               <div>
                 <label className="font-medium text-xl">Spouse Name</label>
                 <input
+                  required
                   onChange={handleChange}
                   type="text"
                   name="maritalInfo.spouseName"
@@ -305,6 +323,7 @@ const FormOne = () => {
               <div>
                 <label className="font-medium text-xl">Marriage Date</label>
                 <input
+                  required
                   onChange={handleChange}
                   type="date"
                   name="maritalInfo.date"
@@ -319,6 +338,7 @@ const FormOne = () => {
 
               <label className=" ">address</label>
               <input
+                required
                 type="text"
                 name="address.residential.addressLine"
                 onChange={handleChange}
@@ -327,6 +347,7 @@ const FormOne = () => {
               />
               <label className=" ">state</label>
               <input
+                required
                 type="text"
                 name="address.residential.state"
                 onChange={handleChange}
@@ -335,6 +356,7 @@ const FormOne = () => {
               />
               <label className=" ">city</label>
               <input
+                required
                 type="text"
                 name="address.residential.city"
                 onChange={handleChange}
@@ -343,6 +365,7 @@ const FormOne = () => {
               />
               <label className=" ">pincode</label>
               <input
+                required
                 type="Number"
                 name="address.residential.pincode"
                 onChange={handleChange}
@@ -351,6 +374,7 @@ const FormOne = () => {
               />
               <label className=" ">phone</label>
               <input
+                required
                 type="Number"
                 name="address.residential.phone"
                 onChange={handleChange}
@@ -363,6 +387,7 @@ const FormOne = () => {
 
               <label className=" ">address</label>
               <input
+                required
                 type="text"
                 name="address.office.addressLine"
                 onChange={handleChange}
@@ -371,6 +396,7 @@ const FormOne = () => {
               />
               <label className=" ">state</label>
               <input
+                required
                 type="text"
                 name="address.office.state"
                 onChange={handleChange}
@@ -379,6 +405,7 @@ const FormOne = () => {
               />
               <label className=" ">city</label>
               <input
+                required
                 type="text"
                 name="address.office.city"
                 onChange={handleChange}
@@ -387,6 +414,7 @@ const FormOne = () => {
               />
               <label className=" ">pincode</label>
               <input
+                required
                 type="Number"
                 name="address.office.pincode"
                 onChange={handleChange}
@@ -395,6 +423,7 @@ const FormOne = () => {
               />
               <label className=" ">phone</label>
               <input
+                required
                 type="Number"
                 name="address.office.phone"
                 onChange={handleChange}
@@ -408,7 +437,6 @@ const FormOne = () => {
             <button
               type="submit"
               className="p-3 rounded-md bg-green-500 cursor-pointer text-white hover:bg-none focus:ring-2 focus:ring-green-500  hover:scale-105 w-1/2  "
-              onClick={handleSubmit}
             >
               Submit Form
             </button>
