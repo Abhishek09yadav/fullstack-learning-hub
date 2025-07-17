@@ -30,7 +30,7 @@ const Check = () => {
         <div className="flex flex-row gap-2 mr-3 ">
           <div className="">
             {selected.map((value, index) => (
-              <div>{value}</div>
+              <div key={index}>{value}</div>
             ))}
           </div>
         </div>
