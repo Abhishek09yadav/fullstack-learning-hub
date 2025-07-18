@@ -1,13 +1,43 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import people from "./people.js";
 const NestedObj = () => {
+  const [boxStyle, setBoxStyle] = useState({});
+  const boxStyleMap = {
+    blue: "bg-blue-500 text-gray-200",
+    green: "bg-green-500 text-black",
+    gray: "bg-gray-500 text-black",
+    pink: "bg-pink-500 text-gray-200",
+  };
+  const handlechange = (e) => {
+    setBoxStyle(boxStyleMap[e.target.value]);
+  };
   return (
     <div>
       <h1 className="text-center">Nested Object Example </h1>
-      <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4 ">
+      <select className="bg-blue-100 text-blue-900 rounded p-2" onChange={handlechange}>
+        <option className="bg-blue-200 text-blue-900" value="blue">
+          blue
+        </option>
+        <option className="bg-green-200 text-green-900" value="green">
+          green
+        </option>
+        <option className="bg-gray-200 text-gray-900" value="gray">
+          gray
+        </option>
+        <option className="bg-pink-200 text-pink-900" value="pink">
+          pink
+        </option>
+      </select>
+      <div
+        className={`grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4 `}
+      >
         {people.map((value, index) => {
           return (
-            <ul className="flex flex-col gap-2 p-3 text-center bg-gray-200 rounded-md " key={index}>
+            <ul
+              className={`flex flex-col gap-2 p-3 text-center  rounded-md ${boxStyle}`}
+              key={index}
+            >
               <li>Name: {value.name}</li>
               <li>Age: {value.age}</li>
 
