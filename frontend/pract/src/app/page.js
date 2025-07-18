@@ -58,6 +58,12 @@ const Page = () => {
       >
         Animated Button
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/navbar")}
+      >
+        NavBar
+      </button>
     </div>
   );
 };

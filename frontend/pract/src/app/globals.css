@@ -11,7 +11,11 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-
+@theme {
+  --color-customColor: oklch(62.7% 0.265 303.9);
+  --color-customColorLight: oklch(0.7709 0.1276 303.9);
+  --color-customColorDark: oklch(43.8% 0.218 303.724);
+}
 @layer components {
   .btn {
     @apply px-4 py-2 font-semibold rounded-md transition;
