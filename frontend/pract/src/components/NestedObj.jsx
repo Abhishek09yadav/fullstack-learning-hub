@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import people from "./people.js";
+
 const NestedObj = () => {
   const [boxStyle, setBoxStyle] = useState({});
+  const [city, setCity] = useState();
   const boxStyleMap = {
     blue: "bg-blue-500 text-gray-200",
     green: "bg-green-500 text-black",
@@ -12,10 +14,19 @@ const NestedObj = () => {
   const handlechange = (e) => {
     setBoxStyle(boxStyleMap[e.target.value]);
   };
+  const handleCityChange = (e) => {
+    setCity(e.target.value);
+  };
+  // const handleCityEnter =(e,index)=>{
+ 
+  // }
   return (
     <div>
-      <h1 className="text-center">Nested Object Example </h1>
-      <select className="bg-blue-100 text-blue-900 rounded p-2" onChange={handlechange}>
+      <h1 className="text-center font-bold text-2xl underline text-blue-400 ">Nested Object Example </h1>
+      <select
+        className="bg-blue-100 text-blue-900 rounded p-2"
+        onChange={handlechange}
+      >
         <option className="bg-blue-200 text-blue-900" value="blue">
           blue
         </option>
@@ -53,6 +64,17 @@ const NestedObj = () => {
                   </div>
                 );
               })}
+              {/* <input
+                type="text"
+                className="w-full border-2 "
+                placeholder="enter city"
+                onChange={(e) => handleCityChange(e)}
+                onKeyDown={(e)=>{
+                  if(e.key =="Enter"){
+
+                  }
+                } }
+              /> */}
             </ul>
           );
         })}

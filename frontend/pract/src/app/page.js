@@ -13,7 +13,8 @@ const Page = () => {
       <button className="btn btn-primary" onClick={() => router.push('/inputRef')}>Ref vs query</button>
       <button className="btn btn-primary" onClick={() => router.push('/childref')}>Ref in Child</button>
       <button className="btn btn-primary" onClick={() => router.push('/funasprop')}>function as prop</button>
-      <button className="btn btn-primary" onClick={() => router.push('/users')}>Users</button>
+      <button className="btn btn-primary" onClick={() => router.push('/users')}>Lifting States Up</button>
+      <button className="btn btn-primary" onClick={() => router.push('/datachange')}>Data Change</button>
     </div>
   );
 }
