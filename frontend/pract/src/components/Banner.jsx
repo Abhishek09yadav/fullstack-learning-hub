@@ -26,7 +26,7 @@ const Banner = () => {
       <div className="grid grid-cols-1 md:grid-cols-6 gap-6  p-6 mt-12 border-gray-800 w-full bg-gray-300 rounded justify-center items-center">
         <div className="relative col-span-2">
           <img
-            src="https://picsum.photos/900"
+            src="/img/img1.jpg"
             className="w-full h-full object-cover rounded-md "
           />
           <div className="absolute inset-0 bg-black/70 rounded-md text-white text-4xl font-bold flex items-center justify-center ">

@@ -73,6 +73,12 @@ const Page = () => {
       >
         Banner
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/musicplayer")}
+      >
+        player
+      </button>
     </div>
   );
 };
