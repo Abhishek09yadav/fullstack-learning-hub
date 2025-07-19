@@ -7,10 +7,7 @@ const Page = () => {
 
   return (
     <div className="grid grid-cols-2 justify-center items-center md:grid-cols-5 gap-2 m-4">
-      <button
-        className="bg-red-600 hover:scale-[1.05] transition-all ease-in duration-300"
-        onClick={() => router.push("/check")}
-      >
+      <button className="btn btn-primary" onClick={() => router.push("/check")}>
         Test button
       </button>
       <button className="btn btn-primary" onClick={() => router.push("/check")}>
@@ -69,6 +66,12 @@ const Page = () => {
         onClick={() => router.push("/timeline")}
       >
         Timeline
+      </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/banner")}
+      >
+        Banner
       </button>
     </div>
   );

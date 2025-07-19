@@ -1,0 +1,16 @@
+.hoverUnderline::before {
+  content: "";
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: blue;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-in-out;
+}
+.hoverUnderline:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
