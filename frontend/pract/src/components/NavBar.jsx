@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import { Home, User, Code, Mail, FolderClosed } from "lucide-react";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+  const sidebarRef = useRef(null);
 
   const navLinks = [
     { name: "Home", path: "/", icon: Home },
@@ -21,6 +22,18 @@ const Navbar = () => {
     setIsOpen(false);
     router.push(path);
   };
+
+  function handleClickOutside(e) {
+    if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  }
+  useEffect(() => {
+    if (!isOpen) return;
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
 
   return (
     <nav className="sticky top-0 z-50 bg-gray backdrop-blur-md border-b bg-gray-300 border-white/20 ">
@@ -55,13 +68,13 @@ const Navbar = () => {
         </div>
       </div>
       {/* mobile menu */}
-
       <div
+        ref={sidebarRef}
         className={`fixed top-13 left-0 h-screen w-xl rounded-md  bg-gray-800  max-w-[200px] backdrop-blur-md z-40 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="h-screen rounded-md shadow-md overflow-y-auto flex flex-col items-center justify-center">
+        <div className="h-screen rounded-md shadow-md overflow-y-auto flex flex-col items-center my-12">
           <div className="flex flex-col gap-3 p-3 ">
             {navLinks.map((value, index) => (
               <button

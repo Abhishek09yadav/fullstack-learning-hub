@@ -64,6 +64,12 @@ const Page = () => {
       >
         NavBar
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/timeline")}
+      >
+        Timeline
+      </button>
     </div>
   );
 };
