@@ -73,11 +73,18 @@ const Page = () => {
       >
         Banner
       </button>
+
       <button
         className="btn btn-primary"
-        onClick={() => router.push("/musicplayer")}
+        onClick={() => router.push("/music-library/musicplayer")}
       >
         player
+      </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/music-library/musicPlaylist")}
+      >
+        play List
       </button>
     </div>
   );

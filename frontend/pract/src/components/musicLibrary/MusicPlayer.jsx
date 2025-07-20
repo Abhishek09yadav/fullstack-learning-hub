@@ -57,7 +57,7 @@ const MusicPlayer = () => {
       const handleTimeUpdate = () => setProgress(audio.currentTime);
       const handleDurationChange = () => setDuration(audio.duration);
 
-      // console.log("🚀 ~ MusicPlayer ~ duration:", audio.duration);
+      
       audio.addEventListener("timeupdate", handleTimeUpdate);
       audio.addEventListener("canplaythrough", handleDurationChange);
       // audio.addEventListener("loadedmetadata", handleDurationChange);
@@ -97,7 +97,7 @@ const MusicPlayer = () => {
         </div>
         {/* progressbar  */}
         <div className="space-y-2 w-full">
-          <div className="relative h-2 bg-gray-300 rounded-full ">
+          <div className="relative h-2 bg-gray-300 overflow-hidden rounded-full ">
             <div
               className="bg-cyan-500 h-full"
               style={{

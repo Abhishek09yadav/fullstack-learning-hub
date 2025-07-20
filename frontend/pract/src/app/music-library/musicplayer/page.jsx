@@ -1,4 +1,4 @@
-import MusicPlayer from '@/components/musicPlayer/MusicPlayer'
+import MusicPlayer from '@/components/musicLibrary/MusicPlayer'
 import React from 'react'
 
 const page = () => {
