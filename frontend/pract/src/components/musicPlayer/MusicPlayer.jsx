@@ -14,6 +14,7 @@ const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
+
   const [playbackRate, setPlaybackRate] = useState(1);
   const [like, setLike] = useState(false);
 
@@ -56,11 +57,17 @@ const MusicPlayer = () => {
       const handleTimeUpdate = () => setProgress(audio.currentTime);
       const handleDurationChange = () => setDuration(audio.duration);
 
+      // console.log("🚀 ~ MusicPlayer ~ duration:", audio.duration);
       audio.addEventListener("timeupdate", handleTimeUpdate);
-      audio.addEventListener("loadedmetadata", handleDurationChange);
+      audio.addEventListener("canplaythrough", handleDurationChange);
+      // audio.addEventListener("loadedmetadata", handleDurationChange);
+      if (audio.readyState >= 1 && !isNaN(audio.duration)) {
+        setDuration(audio.duration);
+      }
       return () => {
         audio.removeEventListener("timeupdate", handleTimeUpdate);
-        audio.removeEventListener("loadedmetadata", handleDurationChange);
+        audio.removeEventListener("canplaythrough", handleDurationChange);
+        // audio.removeEventListener("loadedmetadata", handleDurationChange);
       };
     }
   }, []);
@@ -90,16 +97,21 @@ const MusicPlayer = () => {
         </div>
         {/* progressbar  */}
         <div className="space-y-2 w-full">
-          <div className="realtive h-2 bg-gray-300 rounded-full ">
+          <div className="relative h-2 bg-gray-300 rounded-full ">
             <div
               className="bg-cyan-500 h-full"
-              style={{ width: `${(progress / duration) * 100}%` }}
+              style={{
+                width: `${
+                  duration ? Math.min((progress / duration) * 100, 100) : 0
+                }%`,
+              }}
             ></div>
-            <div className="flex justify-between text-sm font-medium tabular-nums ">
-              <div className="text-cyan-500">{formatTime(progress)}</div>
-              <div className="text-cyan-500">{formatTime(duration)}</div>
-            </div>
           </div>
+        </div>
+        {/* duration */}
+        <div className="flex justify-between w-full  text-sm font-medium ">
+          <div className="text-cyan-500">{formatTime(progress)}</div>
+          <div className="text-cyan-500">{formatTime(duration)}</div>
         </div>
         {/* controls */}
         <div className="flex items-center px-6 py-4 mt-3 bg-gray-300 text-slate-500 rounded-b-xl w-full ">
