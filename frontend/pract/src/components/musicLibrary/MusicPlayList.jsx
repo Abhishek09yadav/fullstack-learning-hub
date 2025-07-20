@@ -86,14 +86,22 @@ const MusicPlayList = () => {
                 <div
                   className={`group relative h-20 flex cursor-pointer justify-between rounded-xl ${song.colors.bg} before:absolute before:h-full before:right-0 before:w-1/2 before:rounded-r-xl before:bg-gradient-to-r before:from-transparent ${song.colors.gradient} before:opacity-0 before:transition before:duration-500 hover:before:opacity-100 `}
                 >
-                  {" "}
-                  <div className="relative my-auto ml-4" >
+                  {/* song desc */}
+                  <div className="relative my-auto ml-4">
                     {" "}
-                    <h4 className={`text-lg font-semibold  ${song.colors.text}`}>
+                    <h4
+                      className={`text-lg font-semibold  ${song.colors.text}`}
+                    >
                       {song.title}
                     </h4>
-                    <span className="transition duration-300 group-hover:invisible "></span>
-                    <div className=" "></div>
+                    <span className="transition duration-300 group-hover:invisible group-hover:opacity-0">
+                      {song.artist}
+                    </span>
+                    <span className="flex flex-nowrap absolute items-center gap-3 invisible top-5 translate-y-3 transition duration-500 opacity-0 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 ">
+                      {" "}
+                      <span className="whitespace-nowrap">Listen now</span>
+                      <FaArrowRight className="h-4 w-4 -translate-x-4 transition duration-300 group-hover:translate-x-0" />
+                    </span>
                   </div>
                   <Image
                     src={song.imageUrl}
