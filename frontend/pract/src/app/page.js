@@ -92,6 +92,12 @@ const Page = () => {
       >
         pin grid
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/stickyTableHeader")}
+      >
+        Sticky Table Header
+      </button>
     </div>
   );
 };

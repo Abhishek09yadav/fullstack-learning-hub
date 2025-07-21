@@ -37,7 +37,7 @@ const PinGrid = () => {
     <div className="grid h-screen grid-cols-4 grid-rows-8 gap-4 bg-blue-50  p-16">
       <div
         className="relative col-span-3 cursor-pointer row-span-8 text-gray-600 text-4xl bg-blue-500 rounded-md flex justify-center items-center"
-        onClick={() => handlePin("1")}
+        onClick={() => handlePin(1)}
       >
         <img
           src={items[0].image}
