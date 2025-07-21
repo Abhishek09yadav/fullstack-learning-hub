@@ -86,6 +86,12 @@ const Page = () => {
       >
         play List
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/pingrid")}
+      >
+        pin grid
+      </button>
     </div>
   );
 };
