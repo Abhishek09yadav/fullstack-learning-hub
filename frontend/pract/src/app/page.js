@@ -98,6 +98,12 @@ const Page = () => {
       >
         Sticky Table Header
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/Hulu")}
+      >
+        Hulu
+      </button>
     </div>
   );
 };
