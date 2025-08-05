@@ -41,7 +41,7 @@ const rowCount = 6;
 const StickyTableHeader = () => {
   return (
     <div className="flex flex-col w-full h-screen bg-green-100">
-      <div className="w-full p-16 flex overflow-scroll  ">
+      <div className="w-full pb-48 flex overflow-scroll  ">
         <table className="relative w-full border border-green-700 rounded-md">
           {tableSections.map((section, index) => (
             <React.Fragment key={index}>
