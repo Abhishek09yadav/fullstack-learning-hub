@@ -18,6 +18,9 @@ function Todo() {
   const dispatch = useDispatch();
 
   function handleAddTodo() {
+      if (!text.trim()) {
+        return;
+      }
     const newTodo = {
       id: Date.now(),
       text,
@@ -27,6 +30,7 @@ function Todo() {
     setText("");
   }
   function handleToggleATodo(id) {
+  
     dispatch(toggleTodo(id));
   }
 
@@ -83,7 +87,7 @@ function Todo() {
               <div className="text-md font-semibold">{value.text}</div>
               <div className="flex flex-row ">
                 {" "}
-                <FaEdit className="text-xl text-yellow-600 " />
+                <FaEdit className="text-xl text-yellow-600" />
                 <MdDelete
                   className="text-xl text-red-600 "
                   onClick={(e) => {
