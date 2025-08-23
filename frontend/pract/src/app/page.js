@@ -104,6 +104,12 @@ const Page = () => {
       >
         Hulu
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/debounce")}
+      >
+        Debounce
+      </button>
     </div>
   );
 };
