@@ -17,7 +17,7 @@ const StopWatch = () => {
     const minutes  = Math.floor((time/60000)% 60)
     const seconds = Math.floor((time/1000)%60)
     const milliseconds = Math.floor((time % 1000)/10)
-    return <span>{`${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}:${String(milliseconds).padStart(2,"0")}`}</span>;
+    return `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}:${String(milliseconds).padStart(2,"0")}`
     }
   return (
     <div className="min-h-screen flex justify-center items-center bg-amber-50">
