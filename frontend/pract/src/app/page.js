@@ -110,6 +110,12 @@ const Page = () => {
       >
         Debounce
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/stopwatch")}
+      >
+        StopWatch
+      </button>
     </div>
   );
 };
