@@ -6,9 +6,9 @@ import {
 } from "react-icons/io";
 
 const Accordion = () => {
-  const [openIndex, SetOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState(null);
   const handleToggle = (index) => {
-    SetOpenIndex(index);
+    setOpenIndex(index === openIndex ? null : index);
     console.log("index is", index);
   };
   const accordionItems = [
@@ -52,8 +52,15 @@ const Accordion = () => {
                 </div>
               </div>
 
-              <div className="text-center items-center justify-center">
-                {openIndex === index && <p className="text-sm text-white p-6">{item.content}</p>}
+              <div className=" items-center justify-center transform transition-all duration-500 ease-in-out">
+                {openIndex === index && (
+                  <p
+                    onClick={() => setOpenIndex(false)}
+                    className={`text-sm px-6 py-2 bg-gradient-to-r from bg-amber-200 to-amber-400 `}
+                  >
+                    {item.content}
+                  </p>
+                )}
               </div>
             </div>
 
