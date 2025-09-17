@@ -98,10 +98,7 @@ const Page = () => {
       >
         Sticky Table Header
       </button>
-      <button
-        className="btn btn-primary"
-        onClick={() => router.push("/Hulu")}
-      >
+      <button className="btn btn-primary" onClick={() => router.push("/Hulu")}>
         Hulu
       </button>
       <button
@@ -115,6 +112,12 @@ const Page = () => {
         onClick={() => router.push("/stopwatch")}
       >
         StopWatch
+      </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/localstorage")}
+      >
+        Localstorage
       </button>
     </div>
   );
