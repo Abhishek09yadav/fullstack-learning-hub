@@ -9,8 +9,7 @@ const Accordion = () => {
   const [openIndex, SetOpenIndex] = useState(null);
   const handleToggle = (index) => {
     SetOpenIndex(index);
-    console.log("index is",index);
-    
+    console.log("index is", index);
   };
   const accordionItems = [
     {
@@ -34,14 +33,27 @@ const Accordion = () => {
       <h1 className="font-bold text-2xl underline">Faq Section</h1>
       <div className="flex flex-col gap-2 w-2xl">
         {accordionItems.map((item, index) => (
-          <div className="border-2  border-yellow-500 rounded-md " key={index}>
-            <div className="flex flex-row justify-between ">
-              <div className="font-bold p-4 ">{item.title}</div>
-              <div
-                className="text-center items-center justify-center"
-                onClick={() => handleToggle(index)}
-              >
-                <IoIosArrowDropdownCircle className="text-3xl text-gray-600" />
+          <div
+            className="border-2 cursor-pointer border-yellow-500 rounded-md "
+            key={index}
+          >
+            <div
+              className="flex flex-col justify-between "
+              onClick={() => handleToggle(index)}
+            >
+              <div className="flex justify-between">
+                <div className="font-bold p-4 ">{item.title}</div>
+                <div className="flex items-center justify-center">
+                  {openIndex === index ? (
+                    <IoIosArrowDropdownCircle className="text-3xl text-gray-600" />
+                  ) : (
+                    <IoIosArrowDropupCircle className="text-3xl text-gray-600" />
+                  )}
+                </div>
+              </div>
+
+              <div className="text-center items-center justify-center">
+                {openIndex === index && <p className="text-sm text-white p-6">{item.content}</p>}
               </div>
             </div>
 
