@@ -119,6 +119,12 @@ const Page = () => {
       >
         Localstorage
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/accordion")}
+      >
+        Accordion
+      </button>
     </div>
   );
 };
