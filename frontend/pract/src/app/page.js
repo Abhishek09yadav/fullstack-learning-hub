@@ -125,6 +125,12 @@ const Page = () => {
       >
         Accordion
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/search")}
+      >
+        Search
+      </button>
     </div>
   );
 };
