@@ -131,6 +131,12 @@ const Page = () => {
       >
         Search
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/tabs")}
+      >
+        Tabs
+      </button>
     </div>
   );
 };
