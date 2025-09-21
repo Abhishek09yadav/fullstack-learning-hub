@@ -137,6 +137,12 @@ const Page = () => {
       >
         Tabs
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/todo")}
+      >
+        Todo
+      </button>
     </div>
   );
 };
