@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { FaPlusCircle } from "react-icons/fa";
-import { FaRegEdit } from "react-icons/fa";
+import { FaEdit, FaPlusCircle } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const Todo = () => {
   const initial = {
@@ -19,7 +19,17 @@ const Todo = () => {
     setTodo((prev) => [...prev, data]);
     setData(initial);
   };
-  const deleteTodo = (index) => {};
+  const handleCompleted = (index) => {
+    setTodo((prev) =>
+      prev.map((value, i) => {
+        return index === i ? { ...value, status: value.status ==="completed" ? "pending" :"completed" } : value;
+      })
+    );
+  };
+
+  const deleteTodo = (index) => {
+    setTodo((prev) => prev.filter((_, i) => i != index));
+  };
   return (
     <div className="flex flex-col min-h-screen place-items-center bg-amber-50 ">
       <h1 className="font-bold text-3xl text-blue-300 my-4">Todo App...</h1>
@@ -32,16 +42,16 @@ const Todo = () => {
           }
           value={data.title}
         />
-        {data.title && (
-          <textarea
-            className="w-full p-2 md:w-4xl border-2 border-blue-400 rounded-md "
-            placeholder="add todo desc here"
-            onChange={(e) =>
-              setData((prev) => ({ ...prev, desc: e.target.value }))
-            }
-            value={data.desc}
-          />
-        )}
+
+        <textarea
+          className="w-full p-2 md:w-4xl border-2 border-blue-400 rounded-md "
+          placeholder="add todo desc here"
+          onChange={(e) =>
+            setData((prev) => ({ ...prev, desc: e.target.value }))
+          }
+          value={data.desc}
+        />
+
         <button
           className=" btn btn-primary  mx-auto flex place-items-center gap-2 
               disabled:cursor-not-allowed disabled:bg-gray-400"
@@ -51,16 +61,34 @@ const Todo = () => {
           Add Todo <FaPlusCircle className="" />
         </button>
       </div>
-      <div className="">
+      <div className="mt-4 ">
         {todo.length > 0 && (
-          <div className="flex flex-col max-w-lg">
+          <div className="flex flex-col justify-center gap-4 w-4xl">
             {todo.map((value, index) => (
-              <div className={"flex justify-between rounded-md "} key={index}>
-                <div className="text-xl font-bold ">{value.title}</div>
-                <div className="flex  ">
-                  <div className="text-blue-500"></div>
-                  <div className="text-red-400"></div>
+              <div
+                onClick={ () => handleCompleted(index)}
+                className={`flex flex-col text-center justify-between rounded-md p-5 ${
+                  value.status === "pending" ? "bg-amber-500" : "bg-green-500"
+                }`}
+                key={index}
+              >
+                <div
+                  className={"flex justify-between items-center rounded-md "}
+                >
+                  <div className="text-xl font-bold ">{value.title}</div>
+                  <div className="flex gap-3 ">
+                    {/* <div className="text-blue-500">
+                      <FaEdit />
+                    </div> */}
+                    <div
+                      className="text-black-400 bg-red-400 p-3 rounded-md"
+                      onClick={() =>deleteTodo(index)}
+                    >
+                      <MdDelete />
+                    </div>
+                  </div>
                 </div>
+                <div className="text-gray-600">Description: {value.desc}</div>
               </div>
             ))}
           </div>
