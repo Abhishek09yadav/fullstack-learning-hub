@@ -143,6 +143,12 @@ const Page = () => {
       >
         Todo
       </button>
+      <button
+        className="btn btn-primary"
+        onClick={() => router.push("/searchbar")}
+      >
+        Search Bar
+      </button>
     </div>
   );
 };
